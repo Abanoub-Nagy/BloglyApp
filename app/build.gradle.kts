@@ -2,16 +2,19 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
+    alias(libs.plugins.ksp)
+    alias(libs.plugins.room)
+    alias(libs.plugins.kotlinx.serialization)
 }
 
 android {
     namespace = "com.example.bloglyapp"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.example.bloglyapp"
         minSdk = 21
-        targetSdk = 34
+        targetSdk = 35
         versionCode = 1
         versionName = "1.0"
 
@@ -37,6 +40,9 @@ android {
     buildFeatures {
         compose = true
     }
+    room {
+        schemaDirectory("$projectDir/schemas")
+    }
 }
 
 dependencies {
@@ -56,4 +62,19 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+
+    implementation(libs.androidx.lifecycle.viewmodel.compose)
+    implementation(libs.androidx.core.splashscreen)
+    implementation(libs.navigation.compose)
+    implementation(libs.kotlinx.serialization.json)
+    implementation(libs.compose.markdown)
+
+    implementation(libs.bundles.ktor)
+    implementation(libs.bundles.coil)
+    implementation(libs.bundles.koin)
+
+    //Room
+    implementation(libs.room.ktx)
+    implementation(libs.room.runtime)
+    ksp(libs.room.compiler)
 }
