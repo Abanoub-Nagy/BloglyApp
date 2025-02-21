@@ -1,4 +1,4 @@
-package com.example.bloglyapp.ui.theme
+package com.example.bloglyapp.presentation.theme
 
 import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme
