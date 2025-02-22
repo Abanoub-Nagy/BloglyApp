@@ -22,7 +22,6 @@ object HttpClientFactory {
                 json(
                     json = Json {
                         ignoreUnknownKeys = true
-
                     },
                     contentType = ContentType.Text.Plain
                 )
@@ -32,8 +31,8 @@ object HttpClientFactory {
                 requestTimeoutMillis = 20_000L
             }
             install(Logging) {
-                logger = Logger.ANDROID
                 level = LogLevel.ALL
+                logger = Logger.ANDROID
             }
             defaultRequest {
                 contentType(ContentType.Application.Any)

@@ -2,5 +2,6 @@ package com.example.bloglyapp.data
 
 object Constant {
     const val GITHUB_URL =
-        "https://raw.githubusercontent.com/Abanoub-Nagy/BloglyApp-server/refs/heads/main/blogs.json"
+        "https://raw.githubusercontent.com/CodeInKotLang/AndroidBlogs-Server/refs/heads/main/blogs.json"
+        //"https://raw.githubusercontent.com/Abanoub-Nagy/BloglyApp-server/refs/heads/main/blogs.json"
 }

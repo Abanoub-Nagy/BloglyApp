@@ -8,8 +8,8 @@ import io.ktor.client.request.get
 
 class KtorRemoteBlogDataSource(
     private val client: HttpClient,
-) {
-    suspend fun getAllBlogs(): List<BlogDto>? {
+) : RemoteBlogDataSource {
+    override suspend fun getAllBlogs(): List<BlogDto>? {
         return try {
             val response = client.get(urlString = GITHUB_URL)
             response.body<List<BlogDto>>()
