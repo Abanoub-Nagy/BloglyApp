@@ -1,5 +1,7 @@
 package com.example.bloglyapp.di
 
+import com.example.bloglyapp.data.local.BlogDatabase
+import com.example.bloglyapp.data.local.DatabaseFactory
 import com.example.bloglyapp.data.remote.HttpClientFactory
 import com.example.bloglyapp.data.remote.KtorRemoteBlogDataSource
 import com.example.bloglyapp.data.remote.RemoteBlogDataSource
@@ -13,6 +15,12 @@ import org.koin.dsl.bind
 import org.koin.dsl.module
 
 val koinMainModule = module {
+    single {
+        DatabaseFactory.create(get())
+    }
+    single {
+        get<BlogDatabase>().blogDao()
+    }
     single {
         HttpClientFactory.create(OkHttp.create())
     }

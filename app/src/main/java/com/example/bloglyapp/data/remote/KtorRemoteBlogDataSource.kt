@@ -1,6 +1,6 @@
 package com.example.bloglyapp.data.remote
 
-import com.example.bloglyapp.data.Constant.GITHUB_URL
+import com.example.bloglyapp.data.util.Constant.GITHUB_URL
 import com.example.bloglyapp.data.remote.dto.BlogDto
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
