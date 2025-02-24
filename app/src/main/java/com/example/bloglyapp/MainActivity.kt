@@ -28,7 +28,8 @@ class MainActivity : ComponentActivity() {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
                     BlogListScreen(
                         modifier = Modifier.padding(innerPadding),
-                        state = state
+                        state = state,
+                        event = viewModel.event
                     )
                 }
             }
