@@ -1,6 +1,7 @@
 package com.example.bloglyapp.presentation.blog_list
 
 import android.widget.Toast
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -25,12 +26,13 @@ import kotlinx.coroutines.flow.emptyFlow
 
 @Composable
 fun BlogListScreen(
-    modifier: Modifier = Modifier, state: BlogListState, event: Flow<BlogListEvent>
+    modifier: Modifier = Modifier, state: BlogListState, event: Flow<BlogListEvent>,
+    onBlogCardClick: (Int) -> Unit
 ) {
     val context = LocalContext.current
     LaunchedEffect(key1 = Unit) {
         event.collect { event ->
-            when(event) {
+            when (event) {
                 is BlogListEvent.Error -> {
                     Toast.makeText(context, event.massage, Toast.LENGTH_SHORT).show()
                 }
@@ -50,7 +52,12 @@ fun BlogListScreen(
             horizontalArrangement = Arrangement.spacedBy(15.dp)
         ) {
             items(state.blogs) { blog ->
-                BlogCard(blog = blog)
+                BlogCard(
+                    blog = blog,
+                    modifier = Modifier.clickable {
+                        onBlogCardClick(blog.id)
+                    }
+                )
             }
         }
     }
@@ -81,6 +88,7 @@ fun BlogListScreenPreview() {
     )
     BlogListScreen(
         state = BlogListState(blogs = dummyBlog),
-        event = emptyFlow()
+        event = emptyFlow(),
+        onBlogCardClick = {}
     )
 }

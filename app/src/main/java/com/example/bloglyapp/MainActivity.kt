@@ -7,13 +7,10 @@ import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
-import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.example.bloglyapp.presentation.blog_list.BlogListScreen
-import com.example.bloglyapp.presentation.blog_list.BlogListViewModel
+import androidx.navigation.compose.rememberNavController
+import com.example.bloglyapp.presentation.navigation.NavGraph
 import com.example.bloglyapp.presentation.theme.BloglyAppTheme
-import org.koin.androidx.compose.koinViewModel
 
 
 class MainActivity : ComponentActivity() {
@@ -22,14 +19,11 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             BloglyAppTheme {
-                val viewModel = koinViewModel<BlogListViewModel>()
-                val state by viewModel.state.collectAsStateWithLifecycle()
-
+                val navController = rememberNavController()
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    BlogListScreen(
+                    NavGraph(
                         modifier = Modifier.padding(innerPadding),
-                        state = state,
-                        event = viewModel.event
+                        navController = navController
                     )
                 }
             }
