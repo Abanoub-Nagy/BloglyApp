@@ -41,13 +41,19 @@ class BlogContentViewModel(
 
     private fun getBlogById() {
         viewModelScope.launch {
+            _state.update {
+                it.copy(
+                    isLoading = true
+                )
+            }
             val result = blogRepository.getBlogById(blogId)
             when (result) {
                 is Result.Success -> {
                     _state.update {
                         it.copy(
                             blog = result.data,
-                            errorMassage = null
+                            errorMassage = null,
+                            isLoading = false
                         )
                     }
                 }
@@ -56,7 +62,8 @@ class BlogContentViewModel(
                     _state.update {
                         it.copy(
                             blog = result.data,
-                            errorMassage = result.massage
+                            errorMassage = result.massage,
+                            isLoading = false
                         )
                     }
                 }
