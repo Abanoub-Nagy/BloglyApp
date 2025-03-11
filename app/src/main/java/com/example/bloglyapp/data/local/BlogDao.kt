@@ -4,6 +4,7 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import com.example.bloglyapp.data.local.entity.BlogContentEntity
 import com.example.bloglyapp.data.local.entity.BlogEntity
 
 @Dao
@@ -20,4 +21,11 @@ interface BlogDao {
 
     @Query("DELETE FROM blogs")
     suspend fun deleteAllBlogs()
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertBlogContent(content: BlogContentEntity)
+
+    @Query("SELECT * FROM blog_content WHERE blogId = :id")
+    suspend fun getBlogContentById(id: Int): BlogContentEntity?
+
 }

@@ -6,4 +6,5 @@ object Constant {
         //"https://raw.githubusercontent.com/Abanoub-Nagy/BloglyApp-server/refs/heads/main/blogs.json"
     const val BLOG_TABLE_NAME = "blogs"
     const val BLOG_DATABASE_NAME = "blogs.db"
+    const val BLOG_CONTENT_TABLE_NAME = "blog_content"
 }

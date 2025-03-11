@@ -6,6 +6,7 @@ import com.example.bloglyapp.domain.util.Result
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
 import io.ktor.client.request.get
+import io.ktor.client.statement.bodyAsText
 import java.net.UnknownHostException
 
 class KtorRemoteBlogDataSource(
@@ -16,6 +17,19 @@ class KtorRemoteBlogDataSource(
             val response = client.get(urlString = GITHUB_URL)
             val blogs = response.body<List<BlogDto>>()
             Result.Success(blogs)
+        } catch (e: UnknownHostException) {
+            Result.Error("Network Error. please check your internet connection")
+        } catch (e: Exception) {
+            e.printStackTrace()
+            Result.Error(e.message ?: "Something went wrong. ${e.message}")
+        }
+    }
+
+    override suspend fun fetchBlogContent(url: String): Result<String> {
+        return try {
+            val response = client.get(urlString = url)
+            val blogContent = response.bodyAsText()
+            Result.Success(blogContent)
         } catch (e: UnknownHostException) {
             Result.Error("Network Error. please check your internet connection")
         } catch (e: Exception) {

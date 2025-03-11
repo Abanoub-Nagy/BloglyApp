@@ -5,4 +5,5 @@ import com.example.bloglyapp.domain.util.Result
 
 interface BlogRepo {
     suspend fun getAllBlogs(): Result<List<Blog>>
+    suspend fun getBlogById(id: Int): Result<Blog>
 }

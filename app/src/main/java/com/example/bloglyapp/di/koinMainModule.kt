@@ -7,6 +7,7 @@ import com.example.bloglyapp.data.remote.KtorRemoteBlogDataSource
 import com.example.bloglyapp.data.remote.RemoteBlogDataSource
 import com.example.bloglyapp.data.repository.BlogRepoImpl
 import com.example.bloglyapp.domain.repository.BlogRepo
+import com.example.bloglyapp.presentation.blog_content.BlogContentViewModel
 import com.example.bloglyapp.presentation.blog_list.BlogListViewModel
 import io.ktor.client.engine.okhttp.OkHttp
 import org.koin.core.module.dsl.singleOf
@@ -28,4 +29,5 @@ val koinMainModule = module {
     singleOf(::BlogRepoImpl).bind<BlogRepo>()
 
     viewModelOf(::BlogListViewModel)
+    viewModelOf(::BlogContentViewModel)
 }
